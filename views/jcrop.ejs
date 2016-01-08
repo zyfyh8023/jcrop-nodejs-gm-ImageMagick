@@ -18,6 +18,9 @@
 	display: inline-block;
 	vertical-align: middle;
 }
+.old-img img{
+	width:600px;
+}
 .new-img{
 	width:200px;
 	height:200px;
@@ -141,20 +144,21 @@ function preview(file)
 
 function showPreview(coords)
 {
-    $('.cor-x1').val(coords.x);
-    $('.cor-y1').val(coords.y);
-    $('.cor-w').val(coords.w);
-    $('.cor-h').val(coords.h);
+	var ratio=imgw/600;
+    $('.cor-x1').val(coords.x*ratio);
+    $('.cor-y1').val(coords.y*ratio);
+    $('.cor-w').val(coords.w*ratio);
+    $('.cor-h').val(coords.h*ratio);
     $('.cor-x2').val(coords.x2);
     $('.cor-y2').val(coords.y2);
-
+    
     if (parseInt(coords.w) > 0)
     {
       	var rx = 200 / coords.w;
   		var ry = 200 / coords.h;
       	$('.new-img img').css({
-        	width: Math.round(rx * imgw) + 'px',
-            height: Math.round(ry * imgh) + 'px',
+        	width: Math.round(rx * 600) + 'px',
+            height: Math.round(ry * imgh / ratio) + 'px',
             marginLeft: '-' + Math.round(rx * coords.x) + 'px',
             marginTop: '-' + Math.round(ry * coords.y) + 'px'
       	});
